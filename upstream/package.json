@@ -1,0 +1,170 @@
+{
+  "name": "meownocode",
+  "private": true,
+  "version": "1.0.0",
+  "description": "轻量级、注重隐私的笔记应用",
+  "author": "MeowNocode Team",
+  "main": "public/electron.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "concurrently --kill-others --names api,web \"npm run server:dev\" \"npm run dev -- --host 127.0.0.1\"",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "server": "node server/index.js",
+    "server:dev": "node --watch server/index.js",
+    "start": "node server/index.js",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"npm run dev\" \"wait-on http://localhost:8080 && cross-env NODE_ENV=development electron .\"",
+    "electron-build": "npm run build && electron-builder",
+    "electron-build:win": "npm run build && electron-builder --win",
+    "dist": "npm run build && electron-builder --publish=never"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.872.0",
+    "@aws-sdk/lib-storage": "^3.872.0",
+    "@hookform/resolvers": "^3.6.0",
+    "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-alert-dialog": "^1.1.0",
+    "@radix-ui/react-aspect-ratio": "^1.1.0",
+    "@radix-ui/react-avatar": "^1.1.0",
+    "@radix-ui/react-checkbox": "^1.1.0",
+    "@radix-ui/react-collapsible": "^1.1.0",
+    "@radix-ui/react-context-menu": "^2.2.0",
+    "@radix-ui/react-dialog": "^1.1.0",
+    "@radix-ui/react-dropdown-menu": "^2.1.0",
+    "@radix-ui/react-hover-card": "^1.1.0",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-menubar": "^1.1.0",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
+    "@radix-ui/react-popover": "^1.1.0",
+    "@radix-ui/react-progress": "^1.1.0",
+    "@radix-ui/react-radio-group": "^1.2.0",
+    "@radix-ui/react-scroll-area": "^1.1.0",
+    "@radix-ui/react-select": "^2.1.0",
+    "@radix-ui/react-separator": "^1.1.0",
+    "@radix-ui/react-slider": "^1.2.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.0",
+    "@radix-ui/react-toggle": "^1.1.0",
+    "@radix-ui/react-toggle-group": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.0",
+    "@tanstack/react-query": "^5.48.0",
+    "axios": "^1.6.8",
+    "better-sqlite3": "^9.6.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "cmdk": "^1.0.0",
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "embla-carousel-react": "^8.1.5",
+    "express": "^4.19.2",
+    "framer-motion": "^11.3.9",
+    "html-to-image": "^1.11.11",
+    "html2canvas": "^1.4.1",
+    "input-otp": "^1.2.4",
+    "lucide-react": "^0.417.0",
+    "marked": "^16.1.1",
+    "morgan": "^1.10.0",
+    "next-themes": "^0.3.0",
+    "react": "^18.2.0",
+    "react-contenteditable": "^3.3.7",
+    "react-day-picker": "^8.10.1",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.52.0",
+    "react-markdown": "^10.1.0",
+    "react-resizable-panels": "^2.0.19",
+    "react-router-dom": "^6.23.1",
+    "recharts": "^2.12.7",
+    "sonner": "^1.5.0",
+    "sql.js": "^1.9.0",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^0.9.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@meituan-nocode/vite-plugin-dev-logger": "^0.1.0",
+    "@meituan-nocode/vite-plugin-nocode-html-transformer": "^0.2.5",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "4.3.4",
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^39.1.1",
+    "electron-builder": "^26.0.12",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "vite": "5.4.11",
+    "wait-on": "^9.0.1"
+  },
+  "homepage": "./",
+  "build": {
+    "appId": "com.meownocode.app",
+    "productName": "MeowNocode",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "build/**/*",
+      "public/electron.js",
+      "public/preload.js"
+    ],
+    "extraResources": [
+      {
+        "from": "node_modules",
+        "to": "node_modules",
+        "filter": [
+          "!**/*.{obj,d,pdb,lib,dll,h,cc,cpp,c,exe,so,dylib}",
+          "!better-sqlite3/**/*",
+          "!express/**/*",
+          "!cors/**/*",
+          "!morgan/**/*",
+          "!dotenv/**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "nodeGypRebuild": false
+  }
+}
